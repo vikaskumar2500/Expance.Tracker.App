@@ -19,6 +19,12 @@ const expances = [
     amount: 200,
     LocationOfExpenditure: "Mumbai",
   },
+
+  {
+    title: "Picknic",
+    amount: 500,
+    LocationOfExpenditure: "Goa"
+  }
 ];
 
 function App(props) {
@@ -29,9 +35,17 @@ function App(props) {
         <div>Title</div>
         <div>Location</div>
         <div>Amount</div>
-        
       </div>
-      <ExpanceItem
+
+      {/* we can use loop */}
+      {expances.map(items => {
+        return (<ExpanceItem
+          title={items.title}
+          amount={items.amount}
+          LocationOfExpenditure={items.LocationOfExpenditure}
+        />);
+      })}
+      {/* <ExpanceItem
         title={expances[0].title}
         amount={expances[0].amount}
         LocationOfExpenditure={expances[0].LocationOfExpenditure}
@@ -47,7 +61,7 @@ function App(props) {
         title={expances[2].title}
         amount={expances[2].amount}
         LocationOfExpenditure={expances[2].LocationOfExpenditure}
-      />
+      /> */}
     </div>
   );
 }
