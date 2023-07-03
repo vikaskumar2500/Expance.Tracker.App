@@ -21,12 +21,16 @@ const expances = [
   },
 ];
 
-
-
 function App(props) {
   return (
-    <div>
+    <div className="expancesItems">
       <h2>Expance Items</h2>
+      <div className="titles">
+        <div>Title</div>
+        <div>Location</div>
+        <div>Amount</div>
+        
+      </div>
       <ExpanceItem
         title={expances[0].title}
         amount={expances[0].amount}
