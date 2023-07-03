@@ -5,45 +5,55 @@ const expances = [
   {
     title: "Food",
     amount: 10,
-    LocationOfExpenditure: "Kolkata",
+    LocationOfExpenditure: "Rajstan",
+    date: new Date(2023, 7, 3),
   },
 
   {
     title: "Petrol",
     amount: 100,
     LocationOfExpenditure: "Delhi",
+    date: new Date(2023, 1, 6),
   },
 
   {
     title: "Movies",
     amount: 200,
     LocationOfExpenditure: "Mumbai",
+    date: new Date(2023, 4, 27),
   },
 
   {
     title: "Picknic",
     amount: 500,
-    LocationOfExpenditure: "Goa"
-  }
+    LocationOfExpenditure: "Goa",
+    date: new Date(2023, 3, 31),
+  },
 ];
 
-function App(props) {
+function App() {
   return (
     <div className="expancesItems">
       <h2>Expance Items</h2>
       <div className="titles">
-        <div>Title</div>
-        <div>Location</div>
-        <div>Amount</div>
+        <div className="date">Date</div>
+        <div className="details">
+          <div>Title</div>
+          <div>Location</div>
+          <div>Amount</div>
+        </div>
       </div>
 
       {/* we can use loop */}
-      {expances.map(items => {
-        return (<ExpanceItem
-          title={items.title}
-          amount={items.amount}
-          LocationOfExpenditure={items.LocationOfExpenditure}
-        />);
+      {expances.map((items) => {
+        return (
+          <ExpanceItem
+            date={items.date}
+            title={items.title}
+            amount={items.amount}
+            location={items.LocationOfExpenditure}
+          />
+        );
       })}
       {/* <ExpanceItem
         title={expances[0].title}

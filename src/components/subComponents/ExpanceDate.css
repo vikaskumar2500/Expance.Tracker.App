@@ -1,0 +1,25 @@
+
+
+.expance-date {
+    /* border: 3px solid black; */
+    background-color: beige;
+    color: darkolivegreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:0.5rem 0.4rem;
+    border-radius: 12px;
+}
+
+.expance-data-month {
+    font-size: 0.7rem;
+}
+
+.expance-date-date {
+    font-size:1.2rem;
+    font-weight: 800;
+}
+
+.expance-data-year {
+    font-size:0.8rem;
+}
