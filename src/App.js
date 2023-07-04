@@ -41,6 +41,7 @@ const App=()=> {
           <div>Title</div>
           <div>Location</div>
           <div>Amount</div>
+          <div>Btn</div>
         </div>
       </div>
 
@@ -52,6 +53,7 @@ const App=()=> {
             title={items.title}
             amount={items.amount}
             location={items.LocationOfExpenditure}
+          
           />
         );
       })}

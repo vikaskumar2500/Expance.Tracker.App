@@ -1,6 +1,6 @@
 import "./ExpanceItem.css";
-import ExpanceDate from "./Expances/ExpanceDate";
-import ExpanceDetails from "./Expances/ExpanceDetails";
+import ExpanceDate from "./ExpanceItems/ExpanceDate";
+import ExpanceDetails from "./ExpanceItems/ExpanceDetails";
 import Card from "./UI/Card";
 
 // function ExpanceItem(props) {
@@ -13,7 +13,12 @@ import Card from "./UI/Card";
 //   );
 // }
 
-const ExpanceItem=(props)=> {
+const ExpanceItem = (props) => {
+
+  // we can add the delete button.
+  const clickHendler = (e) => {
+    e.target.parentElement.remove();
+  };
   return (
     <Card className="expance-item">
       <ExpanceDate date={props.date} />
@@ -22,8 +27,11 @@ const ExpanceItem=(props)=> {
         amount={props.amount}
         location={props.location}
       />
+      <button className="btn" onClick={clickHendler}>
+        Delete
+      </button>
     </Card>
   );
-}
+};
 
 export default ExpanceItem;

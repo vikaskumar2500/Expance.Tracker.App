@@ -53,5 +53,13 @@ body{
     margin-left: 10%;
 }
 
+.btn {
+    padding: 2px 3px;
+    background-color: #080505;
+    color: antiquewhite;
+    border-radius: 7px;
+    border: 1px solid rgb(203, 190, 190);
+}
+
 
 
