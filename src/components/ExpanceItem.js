@@ -16,23 +16,24 @@ import Card from "./UI/Card";
 
 const ExpanceItem = (props) => {
 
-  const [title, setTile] = useState(props.title);
+  // using useState for changing the amount.
+  const [amount, setAmount] = useState(props.amount);
 
   // we can add the delete button.
   const clickHendler = (e) => {
     // e.target.parentElement.remove();
-    setTile('Updated!');
+    setAmount(100);
   };
   return (
     <Card className="expance-item">
       <ExpanceDate date={props.date} />
       <ExpanceDetails
-        title={title}
-        amount={props.amount}
+        title={props.title}
+        amount={amount}
         location={props.location}
       />
       <button className="btn btn-click" onClick={clickHendler}>
-        Delete
+        Expance
       </button>
     </Card>
   );
