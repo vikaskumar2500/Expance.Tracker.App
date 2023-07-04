@@ -1,6 +1,10 @@
 /* eslint-disable no-undef */
+import React from "react";
+
 import ExpanceItem from "./components/ExpanceItem";
 import Card from "./components/UI/Card";
+import ExpanceForm from "./components/ExpanceForm";
+
 const expances = [
   {
     title: "Food",
@@ -33,31 +37,33 @@ const expances = [
 
 const App = () => {
   return (
-    <Card className="expancesItems">
-      <h2>Expance Items</h2>
-      <div className="titles">
-        <div className="date">Date</div>
-        <div className="details">
-          <div className="title">Title</div>
-          <div className="location">Location</div>
-          <div className="amount">Amount</div>
-          <div className="button">Btn</div>
+    <div className="expancesItems">
+      <ExpanceForm />
+      <Card>
+        <div className="titles">
+          <div className="date">Date</div>
+          <div className="details">
+            <div className="title">Title</div>
+            <div className="location">Location</div>
+            <div className="amount">Amount</div>
+            <div className="button">Btn</div>
+          </div>
         </div>
-      </div>
 
-      {/* we can use loop */}
-      <div>
-        {expances.map((items) => {
-          return (
-            <ExpanceItem
-              date={items.date}
-              title={items.title}
-              amount={items.amount}
-              location={items.LocationOfExpenditure}
-            />
-          );
-        })}
-      </div>
+        {/* we can use loop */}
+        <div>
+          {expances.map((items) => {
+            return (
+              <ExpanceItem
+                date={items.date}
+                title={items.title}
+                amount={items.amount}
+                location={items.LocationOfExpenditure}
+              />
+            );
+          })}
+        </div>
+      </Card>
       {/* <ExpanceItem
         title={expances[0].title}
         amount={expances[0].amount}
@@ -75,7 +81,7 @@ const App = () => {
         amount={expances[2].amount}
         LocationOfExpenditure={expances[2].LocationOfExpenditure}
       /> */}
-    </Card>
+    </div>
   );
 };
 
