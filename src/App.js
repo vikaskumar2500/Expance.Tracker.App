@@ -31,32 +31,33 @@ const expances = [
   },
 ];
 
-const App=()=> {
+const App = () => {
   return (
     <Card className="expancesItems">
       <h2>Expance Items</h2>
       <div className="titles">
         <div className="date">Date</div>
         <div className="details">
-          <div>Title</div>
-          <div>Location</div>
-          <div>Amount</div>
-          <div>Btn</div>
+          <div className="title">Title</div>
+          <div className="location">Location</div>
+          <div className="amount">Amount</div>
+          <div className="button">Btn</div>
         </div>
       </div>
 
       {/* we can use loop */}
-      {expances.map((items) => {
-        return (
-          <ExpanceItem
-            date={items.date}
-            title={items.title}
-            amount={items.amount}
-            location={items.LocationOfExpenditure}
-          
-          />
-        );
-      })}
+      <div>
+        {expances.map((items) => {
+          return (
+            <ExpanceItem
+              date={items.date}
+              title={items.title}
+              amount={items.amount}
+              location={items.LocationOfExpenditure}
+            />
+          );
+        })}
+      </div>
       {/* <ExpanceItem
         title={expances[0].title}
         amount={expances[0].amount}
@@ -76,6 +77,6 @@ const App=()=> {
       /> */}
     </Card>
   );
-}
+};
 
 export default App;
