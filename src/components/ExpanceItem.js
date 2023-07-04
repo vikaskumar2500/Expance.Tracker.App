@@ -1,6 +1,7 @@
 import "./ExpanceItem.css";
-import ExpanceDate from "./subComponents/ExpanceDate";
-import ExpanceDetails from "./subComponents/ExpanceDetails";
+import ExpanceDate from "./Expances/ExpanceDate";
+import ExpanceDetails from "./Expances/ExpanceDetails";
+import Card from "./UI/Card";
 
 // function ExpanceItem(props) {
 //   return (
@@ -12,16 +13,16 @@ import ExpanceDetails from "./subComponents/ExpanceDetails";
 //   );
 // }
 
-function ExpanceItem(props) {
+const ExpanceItem=(props)=> {
   return (
-    <div className="expance-item">
+    <Card className="expance-item">
       <ExpanceDate date={props.date} />
       <ExpanceDetails
         title={props.title}
         amount={props.amount}
         location={props.location}
       />
-    </div>
+    </Card>
   );
 }
 

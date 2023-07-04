@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import ExpanceItem from "./components/ExpanceItem";
-
+import Card from "./components/UI/Card";
 const expances = [
   {
     title: "Food",
@@ -31,9 +31,9 @@ const expances = [
   },
 ];
 
-function App() {
+const App=()=> {
   return (
-    <div className="expancesItems">
+    <Card className="expancesItems">
       <h2>Expance Items</h2>
       <div className="titles">
         <div className="date">Date</div>
@@ -72,7 +72,7 @@ function App() {
         amount={expances[2].amount}
         LocationOfExpenditure={expances[2].LocationOfExpenditure}
       /> */}
-    </div>
+    </Card>
   );
 }
 

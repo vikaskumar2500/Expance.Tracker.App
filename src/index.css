@@ -11,6 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.expancesItems {
+  width: 50%;
+  margin-left: 30%;
+  color: aliceblue;
+}
 .expancesItems > h2 {
   text-align: center;
 }
@@ -25,8 +30,8 @@ code {
   border-radius: 12px;
   background-color: #1f1b1b;
   color: rgb(203, 209, 213);
-  width: 40%;
-  margin-left: 30%;
+  width: 80%;
+  margin-left: 10%;
   font-weight: 800;
 }
 .date {

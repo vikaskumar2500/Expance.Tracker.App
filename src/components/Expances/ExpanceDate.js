@@ -1,6 +1,6 @@
 import "./ExpanceDate.css";
 
-function ExpanceDate(props) {
+const ExpanceDate=(props)=> {
   const date = props.date.toLocaleString("en-US", { day: "2-digit" });
   const month = props.date.toLocaleString("en-US", { month: "long" }).substr(0,3);
   const year = props.date.getFullYear();

@@ -1,6 +1,6 @@
 import "./ExpanceDetails.css";
 
-function ExpanceDetails(props) {
+const ExpanceDetails=(props)=> {
   return (
     <div className="expance-details">
       <div className="expance-details-title">{props.title}</div>
