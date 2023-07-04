@@ -1,18 +1,18 @@
 
 
 .expance-date {
-    /* border: 3px solid black; */
-    background-color: beige;
-    color: darkolivegreen;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(54, 58, 67);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding:0.5rem 0.4rem;
+    padding:0.3rem 0.5rem;
     border-radius: 12px;
 }
 
 .expance-data-month {
     font-size: 0.7rem;
+    font-weight: 600;
 }
 
 .expance-date-date {
