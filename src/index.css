@@ -20,11 +20,17 @@ code {
   text-align: center;
 }
 
+.expancesItem {
+  border: 3px solid rgb(164, 163, 163);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .titles {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(103, 147, 150, 0.292);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   padding: 0.5rem;
   margin: 1.5rem 0;
   border-radius: 12px;
@@ -33,6 +39,8 @@ code {
   width: 80%;
   margin-left: 10%;
   font-weight: 800;
+  border: 1px solid rgb(104, 102, 102);
+  margin-top: 1rem;
 }
 .date {
   display: flex;
