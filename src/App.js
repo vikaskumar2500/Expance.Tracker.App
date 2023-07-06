@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState } from "react";
-import ExpanceItem from "./components/ExpanceItem";
+import ExpanceItem from "./components/Expances";
 import Card from "./components/UI/Card";
 import ExpanceForm from "./components/Forms/ExpanceForm";
 import ExpanceFilter from "./components/ExpanceItems/ExpanceFilter";
@@ -8,27 +8,46 @@ import ExpanceFilter from "./components/ExpanceItems/ExpanceFilter";
 const expances = [];
 
 const App = () => {
-  const [state, setState] = useState(expances);
+  let [state, setState] = useState(expances);
   // we can retrive the data using function.
   const expanceDataHandler = (product) => {
-    setState((prevState) => [...prevState, {...product,id:Math.random().toString()}]); // most efficient method
+    setState((prevState) => [
+      ...prevState,
+      { ...product, id: Math.random().toString() },
+    ]); // most efficient method
   };
   // console.log(state);
 
-  const [filterValue, setFilterValue] = useState('');
-  const filterDataHandler = (value)=>{
+  const [filterValue, setFilterValue] = useState("no filter");
+  const filterDataHandler = (value) => {
     setFilterValue(value);
-  }
+  };
+  let filteredItems = state;
 
+  if (filterValue !== "no filter")
+    filteredItems = state.filter((items) => {
+      return items.date.year === filterValue;
+    });
 
+  // check the filteredItems is empty or not?
+  let filteredContent = <p>No items found</p>;
+  if (filteredItems.length > 0)
+    filteredContent = filteredItems.map((items, index) => {
+      return (
+        <ExpanceItem
+          key={index}
+          date={items.date}
+          title={items.title}
+          amount={items.amount}
+          location={items.location}
+        />
+      );
+    });
   return (
     <div className="expancesItems">
-      
       <ExpanceForm onExpanceDta={expanceDataHandler} />
       <Card className="expancesItem">
-
         <div className="titles">
-          <div>FilterYear</div>
           <div className="date">Date</div>
           <div className="details">
             <div className="title">Title</div>
@@ -37,21 +56,13 @@ const App = () => {
             <div className="button">Btn</div>
           </div>
         </div>
-        <ExpanceFilter Selected = {filterValue} onFilterHandler={filterDataHandler} />
+        <ExpanceFilter
+          Selected={filterValue}
+          onFilterHandler={filterDataHandler}
+        />
 
         {/* we can use loop */}
-        <div>
-          {state.map((items) => {
-            return (
-              <ExpanceItem
-                date={items.date}
-                title={items.title}
-                amount={items.amount}
-                location={items.location}
-              />
-            );
-          })}
-        </div>
+        <div>{filteredContent}</div>
       </Card>
     </div>
   );

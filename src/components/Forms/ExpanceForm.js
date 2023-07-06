@@ -122,7 +122,7 @@ const ExpanceForm = (props) => {
             type="number"
             id="amount"
             min={1}
-            step={1}
+            step={0.01}
             placeholder="Enter your amount..."
             value={enteredAmount}
             onChange={amountChangeHandler}

@@ -7,7 +7,9 @@ const ExpanceFilter = (props)=> {
     }
     return (
         <div className="expance-filter">
-            <select name="expance" id="expance" value={props.Selected} onChange={filterHandler}>
+            <div className="filter-text">Filter by year</div>
+            <select name="expance" id="filter-items" className="filter-items" value={props.Selected} onChange={filterHandler}>
+                <option value={'no filter'} >all items</option>
                 <option value={'2023'}>2023</option>
                 <option value={'2022'}>2022</option>
                 <option value={'2021'}>2021</option>

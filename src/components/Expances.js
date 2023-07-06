@@ -1,18 +1,9 @@
 import React, {useState} from 'react'
-import "./ExpanceItem.css";
+import "./Expances.css";
 import ExpanceDate from "./ExpanceItems/ExpanceDate";
 import ExpanceDetails from "./ExpanceItems/ExpanceDetails";
 import Card from "./UI/Card";
 
-// function ExpanceItem(props) {
-//   return (
-//     <div className="expanceItems">
-//       <div className="expanceTitle">{props.title}</div>
-//       <div className="expanceAmount" >Rs{props.amount}</div>
-//       <div className="expanceLocation">{props.LocationOfExpenditure}</div>
-//     </div>
-//   );
-// }
 
 const ExpanceItem = (props) => {
 

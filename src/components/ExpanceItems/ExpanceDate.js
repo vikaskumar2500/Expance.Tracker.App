@@ -11,8 +11,8 @@ const ExpanceDate=(props)=> {
   return (
     <div className="expance-date">
       <div className="expance-data-month">{month}</div>
-      <div className="expance-data-year">{date}</div>
-      <div className="expance-date-date">{year}</div>
+      <div className="expance-data-year">{year}</div>
+      <div className="expance-date-date">{date}</div>
     </div>
   );
 }

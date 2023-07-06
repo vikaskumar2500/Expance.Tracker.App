@@ -61,3 +61,7 @@ code {
 .date {
   flex-grow: 2;
 }
+
+p {
+  text-align: center;
+}
