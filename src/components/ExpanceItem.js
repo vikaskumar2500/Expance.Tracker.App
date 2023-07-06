@@ -3,6 +3,7 @@ import "./ExpanceItem.css";
 import ExpanceDate from "./ExpanceItems/ExpanceDate";
 import ExpanceDetails from "./ExpanceItems/ExpanceDetails";
 import Card from "./UI/Card";
+import ExpanceFilter from './ExpanceItems/ExpanceFilter';
 
 // function ExpanceItem(props) {
 //   return (
@@ -24,9 +25,23 @@ const ExpanceItem = (props) => {
     // e.target.parentElement.remove();
     setAmount(100);
   };
+
+  const [filterValue, setFilterValue] = useState('');
+  const filterDataHandler = (value)=>{
+    setFilterValue(value);
+  }
+  // console.log(props.date);
+
+  // const getDate=(prevState)=>{
+  //   return {...prevState, year:filterValue};
+  // }
+  let getDate =props.date;
+  if(filterValue) getDate= {...props.date, year:filterValue};
+  console.log(filterValue);
   return (
     <Card className="expance-item">
-      <ExpanceDate date={props.date} />
+      <ExpanceFilter Selected = {filterValue} onFilterHandler={filterDataHandler} />
+      <ExpanceDate date={getDate} />
       <ExpanceDetails
         title={props.title}
         amount={amount}

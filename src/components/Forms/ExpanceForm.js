@@ -1,20 +1,6 @@
 import React, { useState } from "react";
 import "./ExpanceForm.css";
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nub",
-  "Dec",
-];
 
 const ExpanceForm = (props) => {
   // individually define states
@@ -76,9 +62,22 @@ const ExpanceForm = (props) => {
     //     return {...userInput, enteredDate:e.target.value};
     // })
   };
-
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nub",
+    "Dec",
+  ];
   // Date
-  let [date, month, year] = enteredDate.split("-");
+  let [year, month, date] = enteredDate.split("-");
   month = Number(month);
   if (month[0] === 0) month = month.substring(1);
   month = months[month - 1];
@@ -96,14 +95,13 @@ const ExpanceForm = (props) => {
         year: year,
       },
     };
-    props.createUpdate(product);
-    // after submiting form we have to clear the values
+    props.onExpanceDta(product);
+    // after submiting form we have to clear the values Using Two way data binding(VVVI);
     setEneteredTitle('');
     setEneteredAmount('');
     setEnteredLocation('');
     setEneteredDate('');
   };
-  
   
   return (
     <div className="expance-form">

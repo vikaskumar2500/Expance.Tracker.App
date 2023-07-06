@@ -57,3 +57,7 @@ code {
   color: rgb(203, 209, 213);
   width: 100%;
 }
+
+.date {
+  flex-grow: 2;
+}
