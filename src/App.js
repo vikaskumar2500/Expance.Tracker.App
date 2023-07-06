@@ -30,19 +30,37 @@ const App = () => {
     });
 
   // check the filteredItems is empty or not?
-  let filteredContent = <p>No items found</p>;
+  let filteredContent = <p>No Expences are found!!</p>;
+  // we can add the more com
   if (filteredItems.length > 0)
-    filteredContent = filteredItems.map((items, index) => {
-      return (
-        <ExpanceItem
-          key={index}
-          date={items.date}
-          title={items.title}
-          amount={items.amount}
-          location={items.location}
-        />
-      );
-    });
+    filteredContent =
+      filteredItems.length === 1
+        ? (filteredContent = filteredItems.map((items, index) => {
+            return (
+              <div>
+                <ExpanceItem
+                  key={index}
+                  date={items.date}
+                  title={items.title}
+                  amount={items.amount}
+                  location={items.location}
+                />
+                <p>Only single Expense here. Please add more...</p>
+              </div>
+            );
+          }))
+        : (filteredContent = filteredItems.map((items, index) => {
+            return (
+              <ExpanceItem
+                key={index}
+                date={items.date}
+                title={items.title}
+                amount={items.amount}
+                location={items.location}
+              />
+            );
+          }));
+
   return (
     <div className="expancesItems">
       <ExpanceForm onExpanceDta={expanceDataHandler} />
