@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ExpanceItem from "./components/ExpanceItem";
 import Card from "./components/UI/Card";
 import ExpanceForm from "./components/Forms/ExpanceForm";
+import ExpanceFilter from "./components/ExpanceItems/ExpanceFilter";
 
 const expances = [];
 
@@ -14,10 +15,18 @@ const App = () => {
   };
   // console.log(state);
 
+  const [filterValue, setFilterValue] = useState('');
+  const filterDataHandler = (value)=>{
+    setFilterValue(value);
+  }
+
+
   return (
     <div className="expancesItems">
+      
       <ExpanceForm onExpanceDta={expanceDataHandler} />
       <Card className="expancesItem">
+
         <div className="titles">
           <div>FilterYear</div>
           <div className="date">Date</div>
@@ -28,6 +37,7 @@ const App = () => {
             <div className="button">Btn</div>
           </div>
         </div>
+        <ExpanceFilter Selected = {filterValue} onFilterHandler={filterDataHandler} />
 
         {/* we can use loop */}
         <div>
