@@ -1,6 +1,6 @@
-import "./ExpanceDate.css";
+import "./ExpencesDate.css";
 
-const ExpanceDate=(props)=> {
+const ExpencesDate=(props)=> {
   // const date = props.date.toLocaleString("en-US", { day: "2-digit" });
   // const month = props.date.toLocaleString("en-US", { month: "long" }).substr(0,3);
   // const year = props.date.getFullYear();
@@ -9,12 +9,12 @@ const ExpanceDate=(props)=> {
   const month = props.date.month;
   const year = props.date.year;
   return (
-    <div className="expance-date">
-      <div className="expance-data-month">{month}</div>
-      <div className="expance-data-year">{year}</div>
-      <div className="expance-date-date">{date}</div>
+    <div className="expence-date">
+      <div className="expence-data-month">{month}</div>
+      <div className="expence-data-year">{year}</div>
+      <div className="expence-date-date">{date}</div>
     </div>
   );
 }
 
-export default ExpanceDate;
+export default ExpencesDate;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./ExpanceForm.css";
+import "./ExpencesForm.css";
+import {v4 as uuidv4} from 'uuid';
 
 
-const ExpanceForm = (props) => {
+const ExpencesForm = (props) => {
   // individually define states
   let [enteredTitle, setEneteredTitle] = useState("");
   let [enteredAmount, setEneteredAmount] = useState("");
@@ -86,6 +87,7 @@ const ExpanceForm = (props) => {
   const formSumbitHandler = (e) => {
     e.preventDefault();
     const product = {
+      id:uuidv4(),
       title: enteredTitle,
       amount: enteredAmount,
       location: enteredLocation,
@@ -121,7 +123,7 @@ const ExpanceForm = (props) => {
           <input
             type="number"
             id="amount"
-            min={1}
+            min={0.01}
             step={0.01}
             placeholder="Enter your amount..."
             value={enteredAmount}
@@ -160,4 +162,4 @@ const ExpanceForm = (props) => {
   );
 };
 
-export default ExpanceForm;
+export default ExpencesForm;

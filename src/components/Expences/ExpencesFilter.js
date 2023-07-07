@@ -1,14 +1,14 @@
 import React from "react";
-import './ExpanceFilter.css';
+import './ExpencesFilter.css';
 
-const ExpanceFilter = (props)=> {
+const ExpencesFilter = (props)=> {
     const filterHandler=e=>{
         props.onFilterHandler(e.target.value);
     }
     return (
-        <div className="expance-filter">
+        <div className="expence-filter">
             <div className="filter-text">Filter by year</div>
-            <select name="expance" id="filter-items" className="filter-items" value={props.Selected} onChange={filterHandler}>
+            <select name="expence" id="filter-items" className="filter-items" value={props.Selected} onChange={filterHandler}>
                 <option value={'no filter'} >all items</option>
                 <option value={'2023'}>2023</option>
                 <option value={'2022'}>2022</option>
@@ -29,4 +29,4 @@ const ExpanceFilter = (props)=> {
     );
 }
 
-export default ExpanceFilter;
+export default ExpencesFilter;

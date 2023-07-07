@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -10,58 +18,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-.expancesItems {
-  width: 50%;
-  margin-left: 30%;
-  color: aliceblue;
-}
-.expancesItems > h2 {
-  text-align: center;
-}
-
-.expancesItem {
-  border: 3px solid rgb(164, 163, 163);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.titles {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  padding: 0.5rem;
-  margin: 1.5rem 0;
-  border-radius: 12px;
-  background-color: #1f1b1b;
-  color: rgb(203, 209, 213);
-  width: 80%;
-  margin-left: 10%;
-  font-weight: 800;
-  border: 1px solid rgb(104, 102, 102);
-  margin-top: 1rem;
-}
-.date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.4rem;
-  border-radius: 12px;
-}
-.details {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 12px;
-  color: rgb(203, 209, 213);
-  width: 100%;
-}
-
-.date {
-  flex-grow: 2;
-}
-
-p {
-  text-align: center;
 }

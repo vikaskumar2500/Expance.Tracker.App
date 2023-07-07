@@ -1,6 +1,6 @@
 
 
-.expance-details {
+.expence-details {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -10,11 +10,11 @@
     width: 100%;
 }
 
-.expance-details-location {
+.expence-details-location {
     font-weight: 700;
 }
 
-.expance-details-amount {
+.expence-details-amount {
     background-color: #40005d;
     padding:0.5rem;
     border-radius: 12px;
