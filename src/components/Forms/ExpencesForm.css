@@ -1,4 +1,4 @@
-.expance-form {
+.expence-form {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -39,9 +39,19 @@
     font-weight: 700;
 }
 
-.btn-form {
+.btn-submit-form {
   padding: 0.3rem;
   border-radius: 10px;
   margin-bottom: 1rem;
+  margin-right: 0.3rem;
+  margin-left: -17%;
+}
+
+.btn-cancel-form {
+  padding: 0.3rem 0.5rem;
+  position: absolute;
+  left: 57%;
+  top: 40.7%;
+  border-radius: 10px;
 }
 

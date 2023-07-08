@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./ExpencesForm.css";
-import {v4 as uuidv4} from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 const ExpencesForm = (props) => {
   // individually define states
@@ -30,7 +29,6 @@ const ExpencesForm = (props) => {
     //     return {...userInput, enteredTitle:e.target.value};
     // })
     // setUserInput.printTitle();
-
   };
   const amountChangeHandler = (e) => {
     setEneteredAmount(e.target.value);
@@ -82,12 +80,13 @@ const ExpencesForm = (props) => {
   month = Number(month);
   if (month[0] === 0) month = month.substring(1);
   month = months[month - 1];
-  // console.log(month);
 
   const formSumbitHandler = (e) => {
     e.preventDefault();
+
+    // store in the object as product.
     const product = {
-      id:uuidv4(),
+      id: uuidv4(),
       title: enteredTitle,
       amount: enteredAmount,
       location: enteredLocation,
@@ -97,16 +96,23 @@ const ExpencesForm = (props) => {
         year: year,
       },
     };
-    props.onExpanceDta(product);
+
+    // lifting up the data (child to parent component) using call back function.
+    props.onAddExpenceData(product);
     // after submiting form we have to clear the values Using Two way data binding(VVVI);
-    setEneteredTitle('');
-    setEneteredAmount('');
-    setEnteredLocation('');
-    setEneteredDate('');
+    setEneteredTitle("");
+    setEneteredAmount("");
+    setEnteredLocation("");
+    setEneteredDate("");
   };
-  
+
+  const cancelExpencesHandler = () => {
+    // lifting up data.
+    props.onCancelExpenceBtn();
+  };
+
   return (
-    <div className="expance-form">
+    <div className="expence-form">
       <form action="#" className="form" onSubmit={formSumbitHandler}>
         <div className="items">
           <label htmlFor="title">Title:</label>
@@ -153,11 +159,21 @@ const ExpencesForm = (props) => {
           />
         </div>
         <div className="button">
-          <button type="submit" className="btn btn-form">
+          <button
+            type="submit"
+            className="btn btn-submit-form"
+          >
             Add Expance
           </button>
         </div>
       </form>
+      <button
+        type="submit"
+        className="btn btn-cancel-form"
+        onClick={cancelExpencesHandler}
+      >
+        Cancel
+      </button>
     </div>
   );
 };

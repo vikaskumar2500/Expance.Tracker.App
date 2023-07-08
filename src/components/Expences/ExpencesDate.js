@@ -1,10 +1,9 @@
 import "./ExpencesDate.css";
 
-const ExpencesDate=(props)=> {
+const ExpencesDate = (props) => {
   // const date = props.date.toLocaleString("en-US", { day: "2-digit" });
   // const month = props.date.toLocaleString("en-US", { month: "long" }).substr(0,3);
   // const year = props.date.getFullYear();
-
   const date = props.date.date;
   const month = props.date.month;
   const year = props.date.year;
@@ -15,6 +14,6 @@ const ExpencesDate=(props)=> {
       <div className="expence-date-date">{date}</div>
     </div>
   );
-}
+};
 
 export default ExpencesDate;

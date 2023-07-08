@@ -1,35 +1,69 @@
+/* eslint-disable no-undef */
 import React, { useState } from "react";
 import "./Expences.css";
 import ExpencesList from "./ExpencesList";
 import ExpencesFilter from "./ExpencesFilter";
 import ExpencesForm from "../Forms/ExpencesForm";
+import AddExpencesForm from "../Forms/AddExpencesForm";
+import {v4 as uuidv4} from 'uuid';
 import Card from "../UI/Card";
 
 const Expences = () => {
   // check the filteredItems is empty or not?
-  const expances = [];
-  let [state, setState] = useState(expances);
-  // we can retrive the data using function.
-  const expanceDataHandler = (product) => {
-    setState((prevState) => [...prevState, { ...product }]); // most efficient method
-  };
-  // console.log(state);
+  const expences = [];
+  let [state, setState] = useState(expences);
+  let [checkAddNewExpence, setCheckAddNewExpence] = useState(false);
+  let [checkCancelExpence, setCheckCancelExpence] = useState(false);
 
-  const [filterValue, setFilterValue] = useState("no filter");
+  
+  // we can retrieve the data using function From ExpencesForm.js
+  const expenceDataHandler = (product) => {
+    setState((prevState) => [...prevState, {...product, key:uuidv4()}]); // most efficient method
+  };
+  
+  // Retrieve the Cancel button excess from ExpencesForm.js
+  const expenceCancelBtnHandler = () => {
+    setCheckCancelExpence(true);
+  };
+
+  // Retrieve the Add new Expence button excess from AddExpencesForm.js
+  const addNewExpenceHandler = () => {
+    setCheckAddNewExpence(true);
+    // reseting the checkCancelExpence value so that cycle will continue!
+    setCheckCancelExpence(false);
+  };
+
+  let [filterValue, setFilterValue] = useState("no filter");
+  // Retrieve the filter button datas from ExpencesFilter.js
   const filterDataHandler = (value) => {
     setFilterValue(value);
   };
   let filteredItems = state;
+  
 
-  if (filterValue !== "no filter")
+  // if filter will apply
+  if (filterValue !== "no filter") {
     filteredItems = state.filter((items) => {
       return items.date.year === filterValue;
     });
+  }
+
+  // setting up Form according to our need
+  let appearedForm = (
+    <AddExpencesForm onAddNewExpenceBtn={addNewExpenceHandler} />
+  );
+  if (checkAddNewExpence && !checkCancelExpence) {
+    appearedForm = (
+      <ExpencesForm
+        onAddExpenceData={expenceDataHandler}
+        onCancelExpenceBtn={expenceCancelBtnHandler}
+      />
+    );
+  }
 
   return (
     <div className="expences">
-      <ExpencesForm onExpanceDta={expanceDataHandler} />
-
+      {appearedForm}
       <Card className="expences-items">
         <ExpencesFilter
           Selected={filterValue}
