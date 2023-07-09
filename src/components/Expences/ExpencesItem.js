@@ -5,17 +5,10 @@ import Card from "../UI/Card";
 import {v4 as uuidv4} from 'uuid';
 
 const ExpencesItem = (props) => {
-  // using useState for changing the amount.
-  // const [amount, setAmount] = useState(props.amount);
-  // we can add the delete button.
-  const clickHendler = (e) => {
-    
-    e.preventDefault();
-
+  const deleteExpenseHandler = (e) => {
     // lifting up the Id to the Expences.js compnents.
-    props.onModifyFilter(e.target.parentElement.parentElement.id);
-    // e.target.parentElement.remove();
-    // setAmount(100);
+    // console.log(props);
+    props.onDeleteExpense(props.id);
   };
 
   return (
@@ -23,11 +16,12 @@ const ExpencesItem = (props) => {
       <Card className="expencesItem">
         <ExpencesDate date={props.date} />
         <ExpencesDetail
+          key={props.id}
           title={props.title}
           amount={props.amount}
           location={props.location}
         />
-        <button type="submit" className="btn btn-click" onClick={clickHendler}>
+        <button type="submit" className="btn btn-click" onClick={deleteExpenseHandler}>
           Delete
         </button>
       </Card>

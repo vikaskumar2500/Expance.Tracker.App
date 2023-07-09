@@ -1,7 +1,7 @@
-import React from "react";
 import './ExpencesFilter.css';
 
 const ExpencesFilter = (props)=> {
+    
     const filterHandler=e=>{
         props.onFilterHandler(e.target.value);
     }

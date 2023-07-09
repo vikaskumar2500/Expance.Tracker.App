@@ -5,19 +5,18 @@ import ExpencesList from "./ExpencesList";
 import ExpencesFilter from "./ExpencesFilter";
 import ExpencesForm from "../Forms/ExpencesForm";
 import AddExpencesForm from "../Forms/AddExpencesForm";
-import { v4 as uuidv4 } from "uuid";
 import Card from "../UI/Card";
 
 const Expences = () => {
   // check the filteredItems is empty or not?
-  const expences = [];
-  let [state, setState] = useState(expences);
+  const expenses = [];
+  let [state, setState] = useState(expenses);
   let [checkAddNewExpence, setCheckAddNewExpence] = useState(false);
   let [checkCancelExpence, setCheckCancelExpence] = useState(false);
 
   // we can retrieve the data using function From ExpencesForm.js
-  const expenceDataHandler = (product) => {
-    setState((prevState) => [...prevState, { ...product, key: uuidv4() }]); // most efficient method
+  const expenceDataHandler = (expense) => {
+    setState((prevState) => [expense, ...prevState]); // most efficient method
   };
 
   // Retrieve the Cancel button excess from ExpencesForm.js
@@ -37,13 +36,14 @@ const Expences = () => {
   const filterDataHandler = (value) => {
     setFilterValue(value);
   };
-  let filteredItems = state;
+  // let filteredItems = state;
 
   // if filter will apply
-  if (filterValue !== "no filter") {
-    filteredItems = state.filter((items) => {
-      return items.date.year === filterValue;
-    });
+  let filteredExpenses = state;
+  if (filterValue !== "no filter" && state.length > 0) {
+    filteredExpenses = state.filter(
+      (expense) => expense.date.year === filterValue
+    );
   }
 
   // setting up Form according to our need
@@ -58,18 +58,14 @@ const Expences = () => {
       />
     );
   }
-
-  // modify 
-  const modifyFilterExpencesHandler = (id) => {
-    // calculate the index of target item.
-    const indexId = filteredItems.findIndex(
-      (expence) => expence.id === id
-    );
-    // delete the target item only.
-    filteredItems.splice(indexId, 1);
-    setState(filteredItems);
-    // setModifyFilter([...expences]);
+  // console.log('before',filteredItems.length);
+  // writing function for the delete button.
+  const deleteExpenseHandler = (id) => {
+    setState((prevState) => {
+      return prevState.filter((expense) => expense.id !== id);
+    });
   };
+  // console.log('after',filteredItems.length);
 
   return (
     <div className="expences">
@@ -81,8 +77,8 @@ const Expences = () => {
         />
         <div>
           <ExpencesList
-            onModifyFilterExpences={modifyFilterExpencesHandler}
-            items={filteredItems}
+            onDeleteExpense={deleteExpenseHandler}
+            items={filteredExpenses}
           />
         </div>
       </Card>

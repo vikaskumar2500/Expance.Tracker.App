@@ -162,6 +162,7 @@ const ExpencesForm = (props) => {
           <button type="submit" className="btn btn-submit-form">
             Add Expance
           </button>
+
           <button
             type="submit"
             className="btn btn-cancel-form"
