@@ -9,12 +9,17 @@ const ExpencesItem = (props) => {
   // const [amount, setAmount] = useState(props.amount);
   // we can add the delete button.
   const clickHendler = (e) => {
-    e.target.parentElement.remove();
+    
+    e.preventDefault();
+
+    // lifting up the Id to the Expences.js compnents.
+    props.onModifyFilter(e.target.parentElement.parentElement.id);
+    // e.target.parentElement.remove();
     // setAmount(100);
   };
 
   return (
-    <li key={uuidv4()} className="expenceItem-list">
+    <li id={uuidv4()} className="expenceItem-list">
       <Card className="expencesItem">
         <ExpencesDate date={props.date} />
         <ExpencesDetail

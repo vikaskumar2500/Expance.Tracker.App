@@ -5,7 +5,7 @@ import ExpencesList from "./ExpencesList";
 import ExpencesFilter from "./ExpencesFilter";
 import ExpencesForm from "../Forms/ExpencesForm";
 import AddExpencesForm from "../Forms/AddExpencesForm";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import Card from "../UI/Card";
 
 const Expences = () => {
@@ -15,12 +15,11 @@ const Expences = () => {
   let [checkAddNewExpence, setCheckAddNewExpence] = useState(false);
   let [checkCancelExpence, setCheckCancelExpence] = useState(false);
 
-  
   // we can retrieve the data using function From ExpencesForm.js
   const expenceDataHandler = (product) => {
-    setState((prevState) => [...prevState, {...product, key:uuidv4()}]); // most efficient method
+    setState((prevState) => [...prevState, { ...product, key: uuidv4() }]); // most efficient method
   };
-  
+
   // Retrieve the Cancel button excess from ExpencesForm.js
   const expenceCancelBtnHandler = () => {
     setCheckCancelExpence(true);
@@ -39,7 +38,6 @@ const Expences = () => {
     setFilterValue(value);
   };
   let filteredItems = state;
-  
 
   // if filter will apply
   if (filterValue !== "no filter") {
@@ -61,6 +59,18 @@ const Expences = () => {
     );
   }
 
+  // modify 
+  const modifyFilterExpencesHandler = (id) => {
+    // calculate the index of target item.
+    const indexId = filteredItems.findIndex(
+      (expence) => expence.id === id
+    );
+    // delete the target item only.
+    filteredItems.splice(indexId, 1);
+    setState(filteredItems);
+    // setModifyFilter([...expences]);
+  };
+
   return (
     <div className="expences">
       {appearedForm}
@@ -70,7 +80,10 @@ const Expences = () => {
           onFilterHandler={filterDataHandler}
         />
         <div>
-          <ExpencesList items={filteredItems} />
+          <ExpencesList
+            onModifyFilterExpences={modifyFilterExpencesHandler}
+            items={filteredItems}
+          />
         </div>
       </Card>
     </div>

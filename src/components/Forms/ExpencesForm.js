@@ -159,21 +159,18 @@ const ExpencesForm = (props) => {
           />
         </div>
         <div className="button">
+          <button type="submit" className="btn btn-submit-form">
+            Add Expance
+          </button>
           <button
             type="submit"
-            className="btn btn-submit-form"
+            className="btn btn-cancel-form"
+            onClick={cancelExpencesHandler}
           >
-            Add Expance
+            Cancel
           </button>
         </div>
       </form>
-      <button
-        type="submit"
-        className="btn btn-cancel-form"
-        onClick={cancelExpencesHandler}
-      >
-        Cancel
-      </button>
     </div>
   );
 };
