@@ -164,7 +164,7 @@ const ExpencesForm = (props) => {
           </button>
 
           <button
-            type="submit"
+            type="button"
             className="btn btn-cancel-form"
             onClick={cancelExpencesHandler}
           >

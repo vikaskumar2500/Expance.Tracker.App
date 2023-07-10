@@ -6,6 +6,7 @@ import ExpencesFilter from "./ExpencesFilter";
 import ExpencesForm from "../Forms/ExpencesForm";
 import AddExpencesForm from "../Forms/AddExpencesForm";
 import Card from "../UI/Card";
+import ExpensesChart from "./ExpensesChart";
 
 const Expences = () => {
   // check the filteredItems is empty or not?
@@ -70,11 +71,15 @@ const Expences = () => {
   return (
     <div className="expences">
       {appearedForm}
+
       <Card className="expences-items">
         <ExpencesFilter
           Selected={filterValue}
           onFilterHandler={filterDataHandler}
         />
+        {filterValue !== "no filter" && (
+          <ExpensesChart expenses={filteredExpenses} />
+        )}
         <div>
           <ExpencesList
             onDeleteExpense={deleteExpenseHandler}

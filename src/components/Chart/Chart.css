@@ -1,0 +1,14 @@
+
+.chart-container {
+  padding: 1rem;
+  /* border: 5px solid red; */
+  border-radius: 12px;
+  background-color: #f8dfff;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  height: 8rem;
+  width: 93.5%;
+  margin-left: 3.5%;
+  color: black;
+}
