@@ -7,10 +7,67 @@ import ExpencesForm from "../Forms/ExpencesForm";
 import AddExpencesForm from "../Forms/AddExpencesForm";
 import Card from "../UI/Card";
 import ExpensesChart from "./ExpensesChart";
+import { v4 as uuidv4 } from "uuid";
 
 const Expences = () => {
   // check the filteredItems is empty or not?
-  const expenses = [];
+  const expenses = [
+    {
+      id:uuidv4(),
+      title: "Food",
+      amount: 45.85,
+      location: "Mumbai",
+      date: {
+        date: "3",
+        month: "May",
+        year: "2020",
+      },
+    },
+    {
+      id:uuidv4(),
+      title: "Trip",
+      amount: 80.35,
+      location: "Manali",
+      date: {
+        date: "31",
+        month: "Dec",
+        year: "2022",
+      },
+    },
+    {
+      id:uuidv4(),
+      title: "Bloging",
+      amount: 100,
+      location: "Delhi",
+      date: {
+        date: "23",
+        month: "Oct",
+        year: "2022",
+      },
+    },
+    {
+      id:uuidv4(),
+      title: "Meeting",
+      amount: 40,
+      location: "Saharsa",
+      date: {
+        date: "15",
+        month: "Jul",
+        year: "2023",
+      },
+    },
+    {
+      id:uuidv4(),
+      title: "Selfie",
+      amount: 50.99,
+      location: "Goa",
+      date: {
+        date: "21",
+        month: "Apr",
+        year: "2023",
+      },
+    },
+  ];
   let [state, setState] = useState(expenses);
   let [checkAddNewExpence, setCheckAddNewExpence] = useState(false);
   let [checkCancelExpence, setCheckCancelExpence] = useState(false);
@@ -18,6 +75,7 @@ const Expences = () => {
   // we can retrieve the data using function From ExpencesForm.js
   const expenceDataHandler = (expense) => {
     setState((prevState) => [expense, ...prevState]); // most efficient method
+    setCheckAddNewExpence(false);
   };
 
   // Retrieve the Cancel button excess from ExpencesForm.js
@@ -77,9 +135,8 @@ const Expences = () => {
           Selected={filterValue}
           onFilterHandler={filterDataHandler}
         />
-        {filterValue !== "no filter" && (
-          <ExpensesChart expenses={filteredExpenses} />
-        )}
+
+        <ExpensesChart expenses={filteredExpenses} filterValue={filterValue} />
         <div>
           <ExpencesList
             onDeleteExpense={deleteExpenseHandler}

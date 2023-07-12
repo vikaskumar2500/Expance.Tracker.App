@@ -16,12 +16,17 @@ const ExpensesChart = (props) => {
     { label: "Dec", value: 0 },
   ];
 
-  props.expenses.forEach((expense) => {
-    const index = chartDataPoints.findIndex(
-      (data) => data.label === expense.date.month
-    );
-    chartDataPoints[index].value += expense.amount;
-  });
+  if (props.expenses.length > 0 && props.filterValue!=='no filter') {
+    for (let expense of props.expenses) {
+      const index = chartDataPoints.findIndex(
+        (data) => data.label === expense.date.month
+      );
+      // console.log(expense.date.month);
+      // console.log(index);
+      if(index!==-1) chartDataPoints[index].value += expense.amount;
+    }
+  }
+  
 
   return (
     <div className="expenses-chart">
