@@ -16,7 +16,7 @@
 }
 
 .signup-btn {
-  margin-top: 2rem;
+  margin-top: 1rem;
   border: 2px solid red;
   border: none;
   background-color: blue;
@@ -24,6 +24,7 @@
   border-radius: 20px;
   text-align: center;
   padding: 0.4rem 0;
+
 }
 .login {
   border: none;
@@ -38,4 +39,16 @@
   justify-content: flex-start;
   flex-direction: column;
   width: 21.5rem;
+}
+
+.input-text button {
+  border: none;
+  background: none;
+  padding: 2px 5px;
+  
+}
+
+.input-text img {
+  width: 1rem;
+  text-align: center;
 }

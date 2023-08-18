@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import "./index.css";
 import Expenses from "./components/Expenses/Expenses";
@@ -13,16 +18,16 @@ const App = () => {
         <Header />
         <Switch>
           <Route path="/" exact>
-            <Redirect to='/product'/>
-            <SignUp/>
+            <Redirect to="/product" />
+            <SignUp />
           </Route>
 
           <Route path="/product">
             <Expenses />
           </Route>
 
-          <Route path='/signup'>
-            <SignUp/>
+          <Route path="/signup">
+            <SignUp />
           </Route>
         </Switch>
       </div>

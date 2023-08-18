@@ -1,0 +1,8 @@
+.dummy {
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 5rem;
+  padding: 0 2rem;
+  border-bottom: 2px solid rgba(212, 196, 196, 0.6);
+}
