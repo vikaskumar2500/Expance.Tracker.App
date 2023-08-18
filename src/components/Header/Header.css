@@ -1,0 +1,38 @@
+.nav {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  background-color: black;
+  border-bottom: 2px solid white;
+  display: flex;
+  color: rgb(207, 132, 132);
+  align-items: center;
+  z-index: 1;
+  gap: -20rem;
+}
+
+.nav h2 {
+  margin-left: 2rem;
+}
+.list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+  /* margin: 1rem auto; */
+  margin: 1rem 0;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.list li a {
+  text-decoration: none;
+  color: white;
+}
+
+.list li a:hover, .list li a.active {
+  color: rgb(207, 132, 132);
+}

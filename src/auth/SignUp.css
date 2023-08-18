@@ -1,0 +1,41 @@
+.signup {
+  width: 20rem;
+  margin-top: 6rem;
+  margin: 6rem auto;
+  padding: 1rem 2rem;
+  background-color: white;
+  border: 1px solid rgb(205, 180, 180);
+  margin-bottom: 1rem;
+}
+.signup input {
+  font-size: 0.9rem;
+}
+.signup h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.signup-btn {
+  margin-top: 2rem;
+  border: 2px solid red;
+  border: none;
+  background-color: blue;
+  width: 100%;
+  border-radius: 20px;
+  text-align: center;
+  padding: 0.4rem 0;
+}
+.login {
+  border: none;
+  background-color: white;
+  color: black;
+  padding: 0.5rem 0;
+  border: 1px solid rgb(183, 158, 158);
+  border-radius: 6px;
+}
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 21.5rem;
+}

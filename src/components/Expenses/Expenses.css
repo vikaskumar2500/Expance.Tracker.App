@@ -1,0 +1,36 @@
+.expences {
+  max-width: 90vw;
+  margin:3% auto;
+  color: aliceblue;
+  /* border: 3px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items:normal;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  object-fit: cover;
+
+}
+.expences > h2 {
+  text-align: center;
+  /* border: ; */
+}
+
+.expences-items {
+  border: 1px solid rgb(167, 46, 46);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.expences-items {
+  margin:1rem;
+}
+
+@media (max-width:350px) {
+  .expences{
+    max-width: 98vw !important;
+
+  }
+}

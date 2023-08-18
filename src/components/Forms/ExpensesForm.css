@@ -1,0 +1,74 @@
+.expence-form {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: column;
+  background-color: rgb(226, 188, 138);
+  border-radius: 12px;
+  margin-top: 1rem;
+  /* border: 5px solid red;  */
+  min-width: 47.2vw;
+  margin:3% auto;
+  margin-top: 4rem;
+  
+}
+.form>h2 {
+  color: black;
+  border: 2px solid rgb(99, 95, 95);
+  background-color: rgb(197, 207, 218);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  margin:3% auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 8px;
+
+  
+}
+
+.items {
+  display: flex;
+  margin: 0.3rem;
+  text-align: left;
+  flex-wrap: wrap;
+  color: black;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: space-around;
+  flex-direction: column; 
+  font-size: 0.9rem;
+  /* border: 5px solid red; */
+  
+} 
+
+.items>input {
+  border: 2px solid rgb(83, 80, 80);
+  padding: 0.3rem;
+  border-radius: 10px;
+  width: 50%;
+  margin-bottom:0.3rem;
+  cursor: pointer;
+}
+.items>label {
+    font-weight: 700;
+}
+
+.btn-submit-form {
+  padding: 0.3rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  margin-right: 0.3rem;
+  background-color: blue;
+}
+
+.btn-cancel-form {
+  padding: 0.3rem 0.5rem;
+  left: 57% !important;
+  top: 40.7% !important;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+

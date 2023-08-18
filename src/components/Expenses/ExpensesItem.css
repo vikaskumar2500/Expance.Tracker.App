@@ -1,0 +1,43 @@
+.expenceItem-list {
+    list-style: none;
+    margin-right: 2rem;
+}
+
+.expencesItem {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    padding:0.5rem;
+    margin: 1rem 0;
+    background-color: #4b4b4b;
+    color: rgb(203, 209, 213);
+    max-width: 100%;
+    margin: 3% auto;
+    border: 2px solid rgb(81, 78, 78);
+    width: 100% !important;
+    flex-direction: row !important;
+    /* border: 1px solid red; */
+    
+}
+
+.btn {
+    padding: 0.1rem 1rem;
+    background-color: #8e5050;
+    color: antiquewhite;
+    border-radius: 15px;
+    border: 1px solid rgb(203, 190, 190);
+}
+
+
+@media (max-width:850px) {
+    .expencesItem {
+        font-size: 0.6rem;
+    }
+    .btn-click {
+        font-size: 0.6rem;
+    }
+}
+
+
+

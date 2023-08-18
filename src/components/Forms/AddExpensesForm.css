@@ -1,0 +1,20 @@
+
+
+.addExpencesForm {
+  /* border: 3px solid red; */
+  text-align: center;
+  min-width: 47.2vw;
+  height: 5rem;
+  border-radius: 12px;
+  margin:3% auto;
+  background-color: rgb(226, 188, 138);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.addExpencesForm-btn {
+  padding: 0.5rem;
+  /* background-color: blue; */
+}

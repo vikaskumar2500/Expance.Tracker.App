@@ -1,0 +1,22 @@
+
+.expence-filter {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+}
+
+.filter-items {
+    border: 2px solid rgb(145, 138, 138);
+    padding:0.5rem 1rem;
+    background-color: rgb(19, 3, 67);
+    color: white;
+    border-radius: 5px;
+    /* margin:5% 5% 2% 60%; */
+}
+
+.filter-text {
+    color: rgb(220 223 233);
+}

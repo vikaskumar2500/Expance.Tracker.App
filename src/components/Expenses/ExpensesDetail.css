@@ -1,0 +1,22 @@
+
+
+.expence-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:0.5rem;
+    border-radius: 12px;
+    color: rgb(203, 209, 213);
+    width: 100%;
+}
+
+.expence-details-location {
+    font-weight: 700;
+}
+
+.expence-details-amount {
+    background-color: #40005d;
+    padding:0.5rem;
+    border-radius: 12px;
+    border: 2px solid white;
+}
