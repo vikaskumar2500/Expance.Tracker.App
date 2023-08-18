@@ -5,4 +5,33 @@
   margin-top: 5rem;
   padding: 0 2rem;
   border-bottom: 2px solid rgba(212, 196, 196, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.about-profile {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-right: -25px;
+  background-color: rgb(234, 152, 152);
+  border-radius: 10px;
+  padding: 0 1rem;
+  max-width: 25rem;
+}
+
+.about-profile button {
+  background: none;
+  color: blue;
+  border: none;
+  padding: 0 0;
+  margin-top: -5.5px;
+  font-style: italic;
+
+}
+
+.about-profile button:hover {
+  background:none;
+  color: blue;
 }

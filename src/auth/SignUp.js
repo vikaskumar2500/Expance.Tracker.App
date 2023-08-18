@@ -10,6 +10,8 @@ const SignUp = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [login, setLogin] = useState(false);
   const [hide, setHide] = useState(false);
+  const [token, setToken] = useState(null);
+
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -39,6 +41,8 @@ const SignUp = () => {
         if (!response.ok) throw new Error(data.error.message);
         setIsLoading(false);
         setLogin(true);
+        console.log(data.idToken);
+        setToken(data.idToken);
         console.log("User logged in seccessfully");
 
         // reseting data
@@ -171,7 +175,7 @@ const SignUp = () => {
           {isLogin ? "Don't have an account?Sign up" : "Have an account?Login"}
         </Button>
       </div>}
-      {login && <Dummy/>}
+      {login && <Dummy token={token}/>}
     </div>
   );
 };
