@@ -1,12 +1,44 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import "./Contact.css";
 
 const Contact = (props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [details, setDetails] = useState({ displayName: "", photoUrl: "" });
 
   const nameInputRef = useRef();
   const photoUrlInputRef = useRef();
+
+  useEffect(() => {
+    const fetchUpdateDetails = async () => {
+      try {
+        const response = await fetch(
+          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAi_zDvXq4IuDzKX_WmaHKicFr5Tg3xk8Y",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              idToken: props.token,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error.message);
+        console.log(data.users);
+        const [{ displayName, photoUrl }] = data.users;
+        console.log(displayName+' '+ photoUrl);
+
+        if (displayName === "" || photoUrl === "") props.onContact(false);
+
+        setDetails({ displayName: displayName, photoUrl: photoUrl });
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+    fetchUpdateDetails();
+  }, []);
 
   const contactBtnHandler = async () => {
     if (
@@ -37,12 +69,22 @@ const Contact = (props) => {
       const data = await response.json();
       setIsLoading(false);
       if (!response.ok) throw new Error(data.error.message);
+
+      props.onContact(true);
+
       console.log(data);
+
+      // reset the value
       nameInputRef.current.value = "";
       photoUrlInputRef.current.value = "";
     } catch (error) {
       alert(error.message);
     }
+  };
+
+  const editBtnHandler = () => {
+    nameInputRef.current.value = details.displayName;
+    photoUrlInputRef.current.value = details.photoUrl;
   };
 
   return (
@@ -82,6 +124,9 @@ const Contact = (props) => {
           Update
         </Button>
       )}
+      <Button variant="danger" onClick={editBtnHandler}>
+        Edit
+      </Button>
       {isLoading && <p>Sending request...</p>}
     </Form>
   );

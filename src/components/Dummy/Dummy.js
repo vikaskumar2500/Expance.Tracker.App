@@ -5,10 +5,15 @@ import Contact from "./Contact";
 
 const Dummy = (props) => {
   const [isComplete, setIsComplete] = useState(false);
+  const [profileComplete, setProfileComplete] = useState(false);
 
   const dummyBtnHandler = () => {
     setIsComplete(true);
   };
+  const profileHandler = (isTrue) => {
+    setProfileComplete(true);
+  };
+
   return (
     <React.Fragment>
       {!isComplete && (
@@ -27,12 +32,17 @@ const Dummy = (props) => {
           <div className="dummy">
             <p>Winners never quite, Quitters never win.</p>
             <p className="about-profile">
-              Your profile is <span style={{ fontWeight: "bold" }}>64%</span>{" "}
+              Your profile is{" "}
+              <span style={{ fontWeight: "bold" }}>
+                {profileComplete ? "100%" : "0%"}
+              </span>
               completed. A complete Profile has higher chances of landing a job.
-              <Button variant="light">complete now</Button>
+              <Button variant="light">
+                {profileComplete ? "completed" : "complete now"}
+              </Button>
             </p>
           </div>
-          <Contact token={props.token}/>
+          <Contact token={props.token} onContact={profileHandler} />
         </div>
       )}
     </React.Fragment>
