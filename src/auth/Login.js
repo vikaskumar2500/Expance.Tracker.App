@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Login.css";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 // import { auth } from "../firebaseConfig";
 import { UserAuth } from "../auth-context/AuthContext";
 import { useHistory } from "react-router-dom";
-import { getAuth } from "firebase/auth";
-
-
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const Login = (props) => {
   const [hide, setHide] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const { loginUser, tokenHandler } = UserAuth();
   const history = useHistory();
@@ -20,16 +20,11 @@ const Login = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  useEffect(()=> {
-    console.log(auth.currentUser?.emailVerified);
-
-  }, [auth]);
-
   const formSubmitHandler = (e) => {
     e.preventDefault();
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
-
+    setEmail(email);
     setIsLoading(true);
     loginUser(email, password)
       .then((credential) => {
@@ -37,7 +32,7 @@ const Login = (props) => {
         setIsLoading(false);
         tokenHandler(credential._tokenResponse.idToken);
         history.push("/profile");
-        
+
         // reseting data
         emailInputRef.current.value = "";
         passwordInputRef.current.value = "";
@@ -58,6 +53,20 @@ const Login = (props) => {
     }
   };
 
+  const forgotPasswordHandler = () => {
+    setLoader(true);
+    sendPasswordResetEmail(auth, email)
+      .then((credential) => {
+        alert("Check your mail for the link to change Password");
+        console.log(credential);
+        setLoader(false);
+      })
+      .catch((error) => {
+        setLoader(false);
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="hidden">
       <Form className="signup" onSubmit={formSubmitHandler}>
@@ -70,6 +79,9 @@ const Login = (props) => {
               type="email"
               placeholder="Enter email"
               ref={emailInputRef}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               required
             />
           </InputGroup>
@@ -91,14 +103,19 @@ const Login = (props) => {
               </Button>
             </InputGroup.Text>
           </InputGroup>
-
-          {!isLoading && (
-            <Button type="submit" className="signup-btn">
-              Login
-            </Button>
+          {!loader && (
+            <button className="forgot-password" onClick={forgotPasswordHandler}>
+              Forgot password?
+            </button>
           )}
-          {isLoading && <p>Sending request...</p>}
+          {loader && <p>Sending request...</p>}
         </Form.Group>
+        {!isLoading && (
+          <Button type="submit" className="signup-btn">
+            Login
+          </Button>
+        )}
+        {isLoading && <p>Sending request...</p>}
       </Form>
       <p className="create-account">
         Don't have an account? <NavLink to="/signup">Sign up</NavLink>

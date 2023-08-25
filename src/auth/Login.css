@@ -17,3 +17,19 @@
 .create-account:hover {
   background-color: rgb(244, 242, 242);
 }
+
+.forgot-password {
+  background:none;
+  border:none;
+  text-decoration: underline #38b6ff;
+  color: blue;
+  text-align: center;
+  width: 100%;
+}
+
+.forgot-password:hover {
+  background:none;
+  color: blue;
+  text-decoration: underline;
+
+}
