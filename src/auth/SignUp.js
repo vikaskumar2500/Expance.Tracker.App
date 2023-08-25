@@ -1,17 +1,25 @@
 import React, { useRef, useState } from "react";
-import "./SignUp.css";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import Dummy from "../components/Dummy/Dummy";
+
+import "./SignUp.css";
+import { UserAuth } from "../auth-context/AuthContext";
+import { NavLink, useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
-  const [login, setLogin] = useState(false);
   const [hide, setHide] = useState(false);
-  const [token, setToken] = useState(null);
+  const [confirmHide, setConfirmHide] = useState(false);
 
+  const history = useHistory();
+
+  const {
+    createUser,
+    isSignupHandler,
+    tokenHandler,
+    emailVerify,
+    emailVerified,
+    user,
+  } = UserAuth();
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -19,77 +27,40 @@ const SignUp = () => {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    if (isLogin) {
-      setIsLoading(true);
-      try {
-        const response = await fetch(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAi_zDvXq4IuDzKX_WmaHKicFr5Tg3xk8Y",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              email: emailInputRef.current.value,
-              password: passwordInputRef.current.value,
-              returnSecureToken: true,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
+    setIsLoading(true);
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
 
-        if (!response.ok) throw new Error(data.error.message);
-        setIsLoading(false);
-        setLogin(true);
-        console.log(data.idToken);
-        setToken(data.idToken);
-        console.log("User logged in seccessfully");
-
-        // reseting data
-        emailInputRef.current.value = "";
-        passwordInputRef.current.value = "";
-      } catch (error) {
-        setIsLoading(false);
-        setLogin(false);
-        alert(error.message);
-      }
-    } else {
-      setLogin(false);
-      setConfirmPassword(confirmPasswordInputRef.current.value);
-      if (passwordInputRef.current.value !== confirmPassword)
-        alert("password doesn't match");
-      else {
-        setIsLoading(true);
-        try {
-          const response = await fetch(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAi_zDvXq4IuDzKX_WmaHKicFr5Tg3xk8Y",
-            {
-              method: "POST",
-              body: JSON.stringify({
-                email: emailInputRef.current.value,
-                password: passwordInputRef.current.value,
-                returnSecureToken: true,
-              }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const data = await response.json();
-
-          if (!response.ok) throw new Error(data.error.message);
-
+    try {
+      createUser(email, password)
+        .then((credential) => {
+          // console.log(credential._tokenResponse.idToken);
           setIsLoading(false);
-          console.log("User has successfully signed up");
-
-          emailInputRef.current.value = "";
-          passwordInputRef.current.value = "";
-          confirmPasswordInputRef.current.value = "";
-        } catch (error) {
-          setIsLoading(false);
+          tokenHandler(credential._tokenResponse.idToken);
+          console.log(emailVerified);
+          if (emailVerified !== undefined || !emailVerified) {
+            emailVerify(user)
+              .then((credential) => {
+                alert("Verification mail sent to the your email account");
+                console.log(credential);
+                history.push("/login");
+              })
+              .catch((error) => alert(error.message));
+          } else history.push("/login");
+        })
+        .catch((error) => {
           alert(error.message);
-        }
-      }
+          setIsLoading(false);
+        });
+
+      isSignupHandler(true);
+
+      emailInputRef.current.value = "";
+      passwordInputRef.current.value = "";
+      confirmPasswordInputRef.current.value = "";
+    } catch (error) {
+      alert(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -102,80 +73,83 @@ const SignUp = () => {
     }
   };
 
+  const confirmHideButtonHandler = () => {
+    if (confirmPasswordInputRef.current.value.length !== 0) {
+      confirmPasswordInputRef.current.type = confirmHide ? "password" : "text";
+      setConfirmHide((prev) => !prev);
+    } else {
+      setConfirmHide(false);
+    }
+  };
+
   return (
-    <div className="hidden">
-      {!login && <div className="container">
-        <Form className="signup" onSubmit={formSubmitHandler}>
-          <h2>{isLogin ? "Login" : "Signup"} </h2>
-          <Form.Group className="mb-3">
-            <Form.Label>Email address</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>@</InputGroup.Text>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                ref={emailInputRef}
-                required
-              />
-            </InputGroup>
-          </Form.Group>
-          <Form.Group className="mb-3 ">
-            <Form.Label htmlFor="password">Password</Form.Label>
-            <InputGroup>
-              <Form.Control
-                type="password"
-                id="password"
-                placeholder="Enter password"
-                ref={passwordInputRef}
-                required
-              />
-              <InputGroup.Text className="input-text">
-                <Button variant="light" onClick={hideButtonHandler}>
-                  {!hide && <img src="./assets/hide.png" alt="not found" />}
-                  {hide && <img src="./assets/visible.png" alt="not found" />}
-                </Button>
-              </InputGroup.Text>
-            </InputGroup>
-          </Form.Group>
-          {!isLogin && (
-            <Form.Group className="mb-3">
-              <Form.Label htmlFor="confirm-password">
-                Confirm Password
-              </Form.Label>
-              <Form.Control
-                type="password"
-                id="confirm-password"
-                placeholder="Enter confirm password"
-                ref={confirmPasswordInputRef}
-                required
-              />
-            </Form.Group>
-          )}
-          {!isLoading && (
-            <Button type="submit" className="signup-btn">
-              {isLogin ? "Login" : "Sign up"}
-            </Button>
-          )}
-          {isLoading && <p>Sending request...</p>}
-          {isLogin && (
-            <NavLink
-              to="/forgot-password"
-              style={{ marginLeft: "60px", fontSize: "1.1rem" }}
-            >
-              Forgot password
-            </NavLink>
-          )}
-        </Form>
-        <Button
-          variant="light"
-          type="button"
-          className="login"
-          onClick={() => setIsLogin((prev) => !prev)}
-        >
-          {isLogin ? "Don't have an account?Sign up" : "Have an account?Login"}
-        </Button>
-      </div>}
-      {login && <Dummy token={token}/>}
+    <div className="container">
+      <Form className="signup" onSubmit={formSubmitHandler}>
+        <h2>Signup</h2>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <InputGroup>
+            <InputGroup.Text>@</InputGroup.Text>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              ref={emailInputRef}
+              required
+            />
+          </InputGroup>
+        </Form.Group>
+
+        <Form.Group className="mb-3 ">
+          <Form.Label htmlFor="password">Password</Form.Label>
+          <InputGroup>
+            <Form.Control
+              type="password"
+              id="password"
+              placeholder="Enter password"
+              ref={passwordInputRef}
+              required
+            />
+            <InputGroup.Text className="input-text">
+              <Button variant="light" onClick={hideButtonHandler}>
+                {!hide && <img src="./assets/hide.png" alt="not found" />}
+                {hide && <img src="./assets/visible.png" alt="not found" />}
+              </Button>
+            </InputGroup.Text>
+          </InputGroup>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="confirm-password">Confirm Password</Form.Label>
+          <InputGroup>
+            <Form.Control
+              type="password"
+              id="confirm-password"
+              placeholder="Enter confirm password"
+              ref={confirmPasswordInputRef}
+              required
+            />
+            <InputGroup.Text className="input-text">
+              <Button variant="light" onClick={confirmHideButtonHandler}>
+                {!confirmHide && (
+                  <img src="./assets/hide.png" alt="not found" />
+                )}
+                {confirmHide && (
+                  <img src="./assets/visible.png" alt="not found" />
+                )}
+              </Button>
+            </InputGroup.Text>
+          </InputGroup>
+        </Form.Group>
+        {!isLoading && (
+          <Button type="submit" className="signup-btn">
+            Sign up
+          </Button>
+        )}
+        {isLoading && <p>Sending request...</p>}
+      </Form>
+      <p className="create-account">
+        Don't have an account? <NavLink to="/login">Login</NavLink>
+      </p>
     </div>
   );
 };

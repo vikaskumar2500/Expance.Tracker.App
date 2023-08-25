@@ -36,3 +36,16 @@
 .list li a:hover, .list li a.active {
   color: rgb(207, 132, 132);
 }
+
+.logout {
+  /* border: 2px solid red; */
+  font-size: 1.2rem;
+  background-color: rgb(250, 247, 247);
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-weight: 700;
+  padding: 0.5rem 1.4rem;
+  align-items: end;
+
+}

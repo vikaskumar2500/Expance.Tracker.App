@@ -9,6 +9,7 @@
 }
 .signup input {
   font-size: 0.9rem;
+  flex-grow: 4;
 }
 .signup h2 {
   text-align: center;
@@ -44,7 +45,7 @@
 .input-text button {
   border: none;
   background: none;
-  padding: 2px 5px;
+  padding: 0 5px;
   
 }
 
@@ -52,3 +53,4 @@
   width: 1rem;
   text-align: center;
 }
+
